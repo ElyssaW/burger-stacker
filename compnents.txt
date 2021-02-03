@@ -1,0 +1,17 @@
+App
+|-- IngredientList
+|   |------ Ingredient(s)
+|
+|-- Burger pane
+|   |-- BurgerStack
+|   |--- Ingredient(s)
+|   |
+|   | -- Clear Burger
+
+- Write a class based component called App that renders IngredientList and BurgerPane
+
+Rendering Ingredients:
+- Declare an ingredients array of starter data in App
+- Declare an Ingredients component that renders a single ingredients
+- Declare an IngredientList component that is passed props (ingredient array) from App
+-- render via map IngredientList for each item in array
