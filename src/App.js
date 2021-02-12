@@ -1,5 +1,4 @@
-import { findByLabelText } from '@testing-library/react'
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import BurgerPane from './BurgerPane.js'
 import IngredientList from './IngredientList'
 
@@ -18,42 +17,39 @@ const ingredients = [
     {name: 'Onion', color: 'lightyellow'}
   ]
 
-class App extends Component {
+function App () {
 
-    state = {
-        burgerIngredients: []
-    }
+    let [burgerIngredients, setBurgerIngredients] = useState([
+                {name: 'Tomato', color: 'tomato'},
+                {name: 'Bacon', color: 'maroon'},
+                {name: 'Soy Patty', color: '#3F250B'}])
 
-    addLayer = (e) => {
-        console.log('firing')
-        let tempLayers = this.state.burgerIngredients
+    const addLayer = (e) => {
+        let tempLayers = burgerIngredients
 
         let tempObject = {}
         tempObject.name = e.target.innerText
         tempObject.color = e.target.style.color
 
         tempLayers.unshift(tempObject)
-        this.setState({
-            burgerIngredients: tempLayers
-        })
+        setBurgerIngredients([...tempLayers])
     }
 
-    clear = () => {
-        this.setState({
-            burgerIngredients: []
-        })
+    const clear = () => {
+        setBurgerIngredients([])
     }
-    render () {
-        return (
-            <div style={{display: 'flex'}}>
-                < IngredientList 
-                addToBurger={this.addLayer} 
-                ingredients={ingredients}/>
 
-                < BurgerPane clear={this.clear} layers={this.state.burgerIngredients} />
-            </div>
-        )
-    }
+    return (
+        <div style={{display: 'flex'}}>
+            <h1>Ingredients</h1>
+            < IngredientList 
+            addToBurger={addLayer} 
+            ingredients={ingredients}/>
+
+            <h1>Burger</h1>
+            < BurgerPane clear={clear} layers={burgerIngredients} />
+        </div>
+    )
 }
 
 export default App

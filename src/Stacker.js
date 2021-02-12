@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
 
-class Stacker extends Component {
-    render () {
-        return (
-            <div>
+function Stacker (props) {
+    return (
+        <div>
 
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Stacker
